@@ -5896,6 +5896,20 @@ ngx-bootstrap@^6.2.0:
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-6.2.0.tgz#678b274dabfda31411eb1234c981d1967750d890"
   integrity sha512-5WKHo6/ltkenw4UyXZwED8rODCgp2RGbWurzYzZsF/gH1JO5SN7TJ+AL6kXYk6XM42sDA2WhN9Db+ZPNjiyHnA==
 
+ngx-spinner@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-spinner/-/ngx-spinner-10.0.1.tgz#f08932a34bf98b302488a9c475584970ed386d23"
+  integrity sha512-3fkzS4t+oKg1jobUmWxeGD3zLymdIOMijib517tgrDnW4Q2fKKwZPVCfTR5ztm9G0/l9G/DRoOoBcHPPupUBdg==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-toastr@^13.2.1:
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-13.2.1.tgz#531bc7da6a524a861e0409bd2749878b3b3f8a3f"
+  integrity sha512-UAzp7/xWK9IXA2LsOmhpaaIGCqscvJokoQpBNpAMrjEkDeSlFf8PWQAuQY795KW0mJb3qF9UG/s23nsXfMYKmg==
+  dependencies:
+    tslib "^2.0.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
