@@ -47,6 +47,7 @@ export class EventosComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.spinner.show();
     this.getEventos();
   }
 
@@ -55,13 +56,17 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): any {
-    this.eventoService.getEventos().subscribe(
-      (responseEventos: Evento[]) => {
+    this.eventoService.getEventos().subscribe({
+      next: (responseEventos: Evento[]) => {
         this.eventos = responseEventos,
         this.eventosFiltrados = this.eventos;
       },
-      (error: any) => console.log(error)
-    );
+      error: () => {
+        this.spinner.hide();
+        this.toastr.success('Erro ao carregar os eventos!', 'Error!');
+      },
+      complete: () => this.spinner.hide()
+    });
   }
 
   public openModal(template: TemplateRef<any>): void {

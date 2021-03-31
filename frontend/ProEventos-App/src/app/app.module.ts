@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +19,12 @@ import { EventoService } from './services/evento.service';
 
 import { EventosComponent } from './components/eventos/eventos.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
-import { NavComponent } from './components/nav/nav.component';
+import { ContatosComponent } from './components/contatos/contatos.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import { NavComponent } from './shared/nav/nav.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
 
 import { DateTimeFormatPipe } from './helpers/date-time-format.pipe';
 
@@ -29,7 +34,11 @@ import { DateTimeFormatPipe } from './helpers/date-time-format.pipe';
     EventosComponent,
     PalestrantesComponent,
     NavComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    ContatosComponent,
+    PerfilComponent,
+    DashboardComponent,
+    TituloComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +59,7 @@ import { DateTimeFormatPipe } from './helpers/date-time-format.pipe';
     NgxSpinnerModule
   ],
   providers: [EventoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
