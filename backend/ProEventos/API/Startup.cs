@@ -10,6 +10,8 @@ using Microsoft.OpenApi.Models;
 using Persistence;
 using Persistence.Contextos;
 using Persistence.Contratos;
+using AutoMapper;
+using System;
 
 namespace API
 {
@@ -32,6 +34,8 @@ namespace API
             services.AddControllers().AddNewtonsoftJson(
                 x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors();
 
             services.AddScoped<IEventoService, EventoService>();

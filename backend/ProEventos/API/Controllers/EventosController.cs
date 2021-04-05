@@ -1,12 +1,10 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using Persistence.Contextos;
 using Application.Contratos;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Http;
+using Application.Dtos;
 
 namespace API.Controllers
 {
@@ -26,7 +24,7 @@ namespace API.Controllers
       try
       {
           var eventos = await _eventoService.GetAllEventosAsync(true);
-          if (eventos == null) return NotFound("Nenhum evento encontrado.");
+          if (eventos == null) return NoContent();
 
           return Ok(eventos);
       }
@@ -42,10 +40,10 @@ namespace API.Controllers
     {
       try
       {
-          var evento = await _eventoService.GetEventoByIdAsync(id, true);
-          if (evento == null) return NotFound("Evento por Id não encontrado.");
+        var evento = await _eventoService.GetEventoByIdAsync(id, true);
+        if (evento == null) return NoContent();
 
-          return Ok(evento);
+        return Ok(evento);
       }
       catch (Exception err)
       {
@@ -60,7 +58,7 @@ namespace API.Controllers
       try
       {
           var eventos = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-          if (eventos == null) return NotFound("Eventos por Tema não encontrados.");
+          if (eventos == null) return NoContent();
 
           return Ok(eventos);
       }
@@ -72,12 +70,12 @@ namespace API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Evento model)
+    public async Task<IActionResult> Post(EventoDto model)
     {
       try
       {
           var evento = await _eventoService.AddEvento(model);
-          if (evento == null) return BadRequest("Erro ao tentar adicionar eventos.");
+          if (evento == null) return NoContent();
 
           return Ok(evento);
       }
@@ -89,12 +87,12 @@ namespace API.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Evento model)
+    public async Task<IActionResult> Put(int id, EventoDto model)
     {
       try
       {
         var evento = await _eventoService.UpdateEvento(id, model);
-        if (evento == null) return BadRequest("Erro ao tentar editar evento.");
+        if (evento == null) return NoContent();
 
         return Ok(evento);
       }
@@ -110,10 +108,12 @@ namespace API.Controllers
     {
       try
       {
-        if (await _eventoService.DeleteEvento(id))
-          return Ok("Evento deletado.");
-        else
-          return BadRequest("Erro ao tentar excluir evento.");
+        var evento = await _eventoService.GetEventoByIdAsync(id, true);
+        if (evento == null) return NoContent();
+
+        return await _eventoService.DeleteEvento(id) ?
+          Ok("Evento deletado.") :
+          throw new Exception("Erro ao tentar excluir evento.");
       }
       catch (Exception err)
       {
