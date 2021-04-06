@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidatorField } from '@app/helpers/ValidatorField';
 
 @Component({
@@ -42,6 +42,10 @@ export class PerfilComponent implements OnInit {
   public resetForm(event: any): void {
     event?.preventDefault()
     return this.forms.reset();
+  }
+
+  public cssValidators(campoForm: FormControl): any {
+    return {'is-invalid': campoForm.errors && campoForm.touched};
   }
 
 }
